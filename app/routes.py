@@ -5,6 +5,11 @@ from app.config import Config
 
 bp = Blueprint("api", __name__)
 
+@bp.route("/", methods=["GET"])
+def home():
+    return jsonify({"message": "API InsightX is running"})
+
+
 @bp.route("/health", methods=["GET"])
 def health():
     try:

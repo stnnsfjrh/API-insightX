@@ -74,8 +74,6 @@ def predict():
 
         return jsonify({
             "input": payload,
-            "recommended_offer_code": int(encoded_pred),
-            "recommended_offer_label": decoded_label,
             "probabilities": prob_list,
             "top_3_recommendations": top3
         })

@@ -10,7 +10,7 @@ def home():
     return jsonify({"message": "API InsightX is running"})
 
 
-@bp.route("/health", methods=["GET"])
+@bp.route("/health", methods=["GET", "POST"])
 def health():
     try:
         load_model()

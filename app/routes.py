@@ -18,6 +18,19 @@ def health():
     except Exception as e:
         return jsonify({"status": "error", "detail": str(e)}), 500
 
+# 👉 Tambahan GET supaya tidak error 405 saat dibuka di browser
+@bp.route("/predict", methods=["GET"])
+def predict_get():
+    return jsonify({
+        "message": "Use POST with JSON body to access this endpoint",
+        "note": "This endpoint only processes predictions via POST",
+        "example": {
+            "method": "POST",
+            "url": "/predict",
+            "body_format": "application/json"
+        }
+    })
+
 
 @bp.route("/predict", methods=["POST"])
 def predict():

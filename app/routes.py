@@ -48,8 +48,6 @@ def predict():
 
         # Predict encoded label
         encoded_pred = model.predict(df)[0]
-
-        # Convert encoded label → original text
         decoded_label = target_labels.get(str(encoded_pred), "UNKNOWN")
 
         # Probabilities
@@ -57,22 +55,29 @@ def predict():
             proba = model.predict_proba(df)[0]
             class_ids = model.classes_
 
-            all_prob = {
-                str(c): {
+            # Buat list of dict berisi code-label-probability
+            prob_list = [
+                {
                     "code": int(c),
                     "label": target_labels[str(c)],
                     "probability": float(p)
                 }
                 for c, p in zip(class_ids, proba)
-            }
+            ]
+
+            # Sort dari probabilitas tertinggi → ambil Top 3
+            top3 = sorted(prob_list, key=lambda x: x["probability"], reverse=True)[:3]
+
         else:
-            all_prob = {}
+            prob_list = []
+            top3 = []
 
         return jsonify({
             "input": payload,
             "recommended_offer_code": int(encoded_pred),
             "recommended_offer_label": decoded_label,
-            "probabilities": all_prob
+            "probabilities": prob_list,
+            "top_3_recommendations": top3
         })
 
     except Exception as e:

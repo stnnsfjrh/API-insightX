@@ -7,6 +7,7 @@ cara mencoba sistem rekomendasi menggunakan Postman:
 4. masukkan link https://api-insightx-production.up.railway.app/predict
 5. pindah ke bagian body>>Raw
 6. masukkan script JSON dan bebas untuk angka setiap variabel kecuali pada "plan_type" hanya boleh di isi dengan Perpaid(bayar, lalu pakai) dan Postpaid(pakai, bayar nanti)
+
    {
     "plan_type": "Prepaid",
     "device_brand": "Realme",
@@ -19,8 +20,10 @@ cara mencoba sistem rekomendasi menggunakan Postman:
     "travel_score": 0,
     "complaint_count": 0
   }
+  
 7. setelah mengisi setiap valiable, selanjutnya klik send.
-9. akan muncul output top 3 rekomendasi beserta probabilitas setiap label.
+8. akan muncul output top 3 rekomendasi beserta probabilitas setiap label.
+   
    {
     "input": {
         "avg_call_duration": 7.98,
